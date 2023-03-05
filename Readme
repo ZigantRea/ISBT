@@ -6,7 +6,7 @@
 5. For a simple user interface replace in deploy_token.py TO_ADDRESS to new address whom you wish to do transaction.
     a. Run: python3 deploy_token.py
 6. For textual user interface run: python3 user_interface.py
-'''
-bestoo
+
+
+
 # bla
-'''
