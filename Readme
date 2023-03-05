@@ -1,0 +1,9 @@
+1. Start local ganache network
+    ganache-cli -a
+2. Select one wallet's address and private key to be your main wallet
+3. Replace in deploy_token.py MY_ADDRESS and PRIVATE_KEY to your new address and private key
+4. Replace in ReaAndDanciContract.sol my_address to your new address
+5. For a simple user interface replace in deploy_token.py TO_ADDRESS to new address whom you wish to do transaction.
+    a. Run: python3 deploy_token.py
+6. For textual user interface run: python3 user_interface.py
+    

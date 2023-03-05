@@ -1,0 +1,59 @@
+#user_interface {
+    layout: grid;
+    grid-size: 3;
+    grid-gutter: 1 2;
+    margin: 1 2;
+    min-width: 26;
+    grid-rows: 2fr 1fr 1fr 1fr 1fr 1fr;
+    min-height: 26;
+    height: 100%;
+}
+
+Button {
+    width: 100%;
+}
+
+Input {
+    width: 100%;
+}
+
+#amount_1 {
+    column-span: 2;
+}
+
+#amount_2 {
+    column-span: 2;
+}
+
+#address_1 {
+    column-span: 2;
+}
+
+#balance {
+    column-span: 3;
+    content-align: left middle;
+    padding: 0 1;
+    height: 100%;
+    background: $primary-lighten-2;
+    color: $text;
+}
+
+#output {
+    column-span: 3;
+    content-align: left middle;
+    height: 100%;
+    color: $text;
+    content-align: center middle;
+}
+
+#number-0 {
+    column-span: 2;
+}
+
+.error {
+    background: red;
+}
+
+.success {
+    background: lightgreen;
+}
