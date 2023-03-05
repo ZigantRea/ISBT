@@ -116,7 +116,7 @@ Prvo se učitava Solidity kod iz datoteke "ReaAndDanciContract.sol", nakon čega
 Nakon što se dobije bytecode i ABI, kreira se objekt "ReaAndDanciContract" pomoću web3.py biblioteke, a zatim se koristi za stvaranje transakcije koja će deployati novi ugovor na blockchain mreži. Transakcija se potpisuje koristeći privatni ključ "PRIVATE_KEY", nakon čega se šalje na mrežu pomoću "send_raw_transaction" funkcije. Čekanje na potvrdu transakcije se obavlja korištenjem "wait_for_transaction_receipt" funkcije.
 
 Nakon što se ugovor uspješno deploya na mrežu, adresa ugovora se sprema u datoteku "contract_address.txt" i vraća se novi objekt koji predstavlja ugovor u Pythonu. Funkcija može primiti i Web3 objekt kao argument, što omogućuje korištenje postojeće konekcije s blockchain mrežom. Ako se ne preda Web3 objekt, funkcija će koristiti "HTTPProvider" da bi se uspostavila nova veza na blockchain mrežu.
-```
+```Python
 from solcx import compile_standard, install_solc
 from pathlib import Path
 
@@ -330,7 +330,7 @@ Uz pomoć query_one metode dohvaćaju se vrijednosti iz ulaznih polja, a zatim s
 Ako se dogodi greška, iznimke se hvataju i prikazuju u korisničkom sučelju pomoću unsuccessful_action metode. U slučaju uspješne akcije, ažurira se balance varijabla i poziva se successful_action metoda.
 
 Na kraju se poziva metoda run() koja pokreće korisničko sučelje.
-```
+```Python
 from textual.app import App, ComposeResult
 from textual.containers import Container
 from textual.reactive import var
@@ -453,8 +453,9 @@ if __name__ == "__main__":
 ```
 
 
-#### Testiranje na Ganache testnoj mreži
 
+
+#### deploy_token.py 
 Ovaj kod omogućuje kompiliranje i stvaranje Ethereum pametnog ugovora (smart contract) koristeći Python. Evo detaljnijeg objašnjenja svake linije koda:
 ###### import json - 
 Importiramo JSON modul za manipuliranje JSON formatom podataka.
@@ -464,6 +465,7 @@ Importiramo funkciju za kompiliranje pametnog ugovora iz modula solcx.
 Importiramo biblioteku Web3 koja nam omogućuje interakciju s Ethereum mrežom.
 ###### from constant import MY_ADDRESS, PRIVATE_KEY, TO_ADDRESS, CHAIN_ID - 
 Importiramo konstante koje su potrebne za stvaranje i slanje transakcija. Ove konstante su definirane u constant.py datoteci koja se nalazi u istom direktoriju kao i ovaj kod.
+
 Sljedeća funkcija definira proces stvaranja novog pametnog ugovora i spremanja njegove adrese u lokalnu datoteku:
 ```Python
 def create_new_contract_and_save_it_to_local_file(w3=None):
@@ -473,9 +475,32 @@ def create_new_contract_and_save_it_to_local_file(w3=None):
     with open("./ReaAndDanciContract.sol", "r") as file:
         simple_storage_file = file.read()
 ```
+###### w3=None - 
+Funkcija prima w3 kao argument, što je instanca Web3 klase. Ako w3 nije predan, stvara se nova instanca Web3 klase koja se spaja na Ethereum mrežu.
+###### with open("./ReaAndDanciContract.sol", "r") as file: - 
+Otvaramo ReaAndDanciContract.sol datoteku u načinu čitanja i spremamo je u file varijablu.
+###### simple_storage_file = file.read() - 
+Čitamo sadržaj datoteke i sprema ga u simple_storage_file varijablu.
 
+Sljedeći blok koda kompilira pametni ugovor koristeći solcx:
+```Python
+    compiled_sol = compile_standard(
+        {
+            "language": "Solidity",
+            "sources": {"ReaAndDanciContract.sol": {"content": simple_storage_file}},
+            "settings": {"outputSelection": {"*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}}},
+        },
+        solc_version="0.6.0",
+    )
+```
+###### compile_standard() 
+funkcija prima rječnik (dictionary) kao argument koji definira postavke za kompiliranje pametnog ugovora.
+###### "language": "Solidity" - 
+Označava da će se koristiti Solidity programski jezik.
+###### "sources": {"ReaAndDanciContract.sol": {"content": simple_storage_file}} - 
+Definira izvorni kod pametnog ugovora koji će se kompilirati. Ime datoteke mora biti identično onom u sources argumentu, a sadržaj se postavlja na simple_storage_file. "settings
 
-        
+#### Testiranje na Ganache testnoj mreži
         
 
             
