@@ -455,8 +455,24 @@ if __name__ == "__main__":
 
 #### Testiranje na Ganache testnoj mreži
 
-
-
+Ovaj kod omogućuje kompiliranje i stvaranje Ethereum pametnog ugovora (smart contract) koristeći Python. Evo detaljnijeg objašnjenja svake linije koda:
+###### import json - 
+Importiramo JSON modul za manipuliranje JSON formatom podataka.
+###### from solcx import compile_standard - 
+Importiramo funkciju za kompiliranje pametnog ugovora iz modula solcx.
+###### from web3 import Web3 - 
+Importiramo biblioteku Web3 koja nam omogućuje interakciju s Ethereum mrežom.
+###### from constant import MY_ADDRESS, PRIVATE_KEY, TO_ADDRESS, CHAIN_ID - 
+Importiramo konstante koje su potrebne za stvaranje i slanje transakcija. Ove konstante su definirane u constant.py datoteci koja se nalazi u istom direktoriju kao i ovaj kod.
+Sljedeća funkcija definira proces stvaranja novog pametnog ugovora i spremanja njegove adrese u lokalnu datoteku:
+```Python
+def create_new_contract_and_save_it_to_local_file(w3=None):
+    if not w3:
+        w3 = Web3(Web3.HTTPProvider("http://0.0.0.0:8545"))
+        
+    with open("./ReaAndDanciContract.sol", "r") as file:
+        simple_storage_file = file.read()
+```
 
 
         
