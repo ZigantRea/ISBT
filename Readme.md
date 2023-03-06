@@ -18,8 +18,8 @@ Funkcije koja vlasniku ugovora omogućuju:
 Povećanje ukupne ponude tokena (mint).
 Smanjenje ukupne ponude (burn).
 
-#### Solidity pametni ugovor
-Datoteka ReaAndDanciContract.py:
+## Solidity pametni ugovor
+#### ReaAndDanciContract.py:
 Ovaj kod predstavlja implementaciju Ethereum ERC-20 tokena (standarda za izdavanje tokena na Ethereum blockchainu).
 
 Definirana su polja za ime, simbol, decimalna mjesta i ukupnu količinu tokena koje se čuvaju u varijabli totalSupply. Također se definira i adresa koja će biti vlasnik tokena (my_address).
@@ -73,7 +73,7 @@ Funkcija burn omogućuje spaljivanje tokena na određenoj adresi, provjerava se 
 ```
 Svi događaji su definirani kao emitiranje poruke u blockchain mrežu kako bi bili vidljivi i ostalim korisnicima.
 
-Datoteka token_fuction.py:
+#### token_deploy.py:
 
 Ovaj kod kreira i deploya novi pametni ugovor na blockchain mreži pomoću Pythona, koristeći web3.py biblioteku za interakciju s blockchainom i solcx biblioteku za kompiliranje Solidity koda.
 
@@ -104,7 +104,7 @@ Nakon što se ugovor uspješno deploya na mrežu, adresa ugovora se sprema u dat
         f.write(tx_receipt.contractAddress)
     return w3.eth.contract(address=tx_receipt.contractAddress, abi=abi)
 ```
-##### token_fuction.py:
+#### token_fuction.py:
 U ovoj datoteci stvaramo funkcije pomoću kreiranog pametnog ugovora izrađuju funkcije blockhaina koje smo definirali u ReaAndDanciContract.sol.
 
 Inicijaliziranje klase TokeFuction koja se spaja na web3, ukoliko ne postoji copiled_code.json ili contract_address.txt pozivamo funkciju create_new_contract_and_save_it_to_local_file iz datoteke deploy_token.py koja kreira novi pametni ugovor. Inače ukoliko postoji sve prije navedeno koristi ugovor spremljen u te datoteke.
@@ -126,52 +126,7 @@ class TokenFunction:
             self.simple_storage = create_new_contract_and_save_it_to_local_file(w3=self.w3)
 ```
 
-#### deploy_token.py 
-Ovaj kod omogućuje kompiliranje i stvaranje Ethereum pametnog ugovora (smart contract) koristeći Python. Evo detaljnijeg objašnjenja svake linije koda:
-###### import json - 
-Importiramo JSON modul za manipuliranje JSON formatom podataka.
-###### from solcx import compile_standard - 
-Importiramo funkciju za kompiliranje pametnog ugovora iz modula solcx.
-###### from web3 import Web3 - 
-Importiramo biblioteku Web3 koja nam omogućuje interakciju s Ethereum mrežom.
-###### from constant import MY_ADDRESS, PRIVATE_KEY, TO_ADDRESS, CHAIN_ID - 
-Importiramo konstante koje su potrebne za stvaranje i slanje transakcija. Ove konstante su definirane u constant.py datoteci koja se nalazi u istom direktoriju kao i ovaj kod.
-
-Sljedeća funkcija definira proces stvaranja novog pametnog ugovora i spremanja njegove adrese u lokalnu datoteku:
-```Python
-def create_new_contract_and_save_it_to_local_file(w3=None):
-    if not w3:
-        w3 = Web3(Web3.HTTPProvider("http://0.0.0.0:8545"))
-        
-    with open("./ReaAndDanciContract.sol", "r") as file:
-        simple_storage_file = file.read()
-```
-###### w3=None - 
-Funkcija prima w3 kao argument, što je instanca Web3 klase. Ako w3 nije predan, stvara se nova instanca Web3 klase koja se spaja na Ethereum mrežu.
-###### with open("./ReaAndDanciContract.sol", "r") as file: - 
-Otvaramo ReaAndDanciContract.sol datoteku u načinu čitanja i spremamo je u file varijablu.
-###### simple_storage_file = file.read() - 
-Čitamo sadržaj datoteke i sprema ga u simple_storage_file varijablu.
-
-Sljedeći blok koda kompilira pametni ugovor koristeći solcx:
-```Python
-    compiled_sol = compile_standard(
-        {
-            "language": "Solidity",
-            "sources": {"ReaAndDanciContract.sol": {"content": simple_storage_file}},
-            "settings": {"outputSelection": {"*": {"*": ["abi", "metadata", "evm.bytecode", "evm.sourceMap"]}}},
-        },
-        solc_version="0.6.0",
-    )
-```
-###### compile_standard() 
-funkcija prima rječnik (dictionary) kao argument koji definira postavke za kompiliranje pametnog ugovora.
-###### "language": "Solidity" - 
-Označava da će se koristiti Solidity programski jezik.
-###### "sources": {"ReaAndDanciContract.sol": {"content": simple_storage_file}} - 
-Definira izvorni kod pametnog ugovora koji će se kompilirati. Ime datoteke mora biti identično onom u sources argumentu, a sadržaj se postavlja na simple_storage_file. "settings
-
-Datoteka: user_interface.py:
+#### user_interface.py:
 Ovaj kod predstavlja implementaciju jednostavne grafičke korisničke sučelja koje koristi web3 biblioteku za interakciju s blockchain mrežom. 
 Klasa UserInterface nasljeđuje od klase App iz textual paketa, što znači da se koristi za izradu aplikacija s grafičkim korisničkim sučeljem.
 Ova klasa poziva funkcije iz token_fuction.py datoteke.
