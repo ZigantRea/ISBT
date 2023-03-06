@@ -1,11 +1,11 @@
 # Završni ispit - ISBIT
 ***
-##### Predmet:
-             Informacijska sigurnost i blockchain tehnologije
-##### Autori:
-            Daniela Kraljić i Rea Žigant      
-##### Ak.god:
-            2022./2023.
+#### Predmet:
+Informacijska sigurnost i blockchain tehnologije
+#### Autori:
+Daniela Kraljić i Rea Žigant      
+#### Ak.god:
+2022./2023.
 ***
 #### 📃 Zadatak
 
@@ -127,7 +127,7 @@ class TokenFunction:
 ```
 
 #### user_interface.py:
-Ovaj kod predstavlja implementaciju jednostavne grafičke korisničke sučelja koje koristi web3 biblioteku za interakciju s blockchain mrežom. 
+Ova datoteka predstavlja implementaciju jednostavne grafičke korisničke sučelja koje koristi web3 biblioteku za interakciju s blockchain mrežom. 
 Klasa UserInterface nasljeđuje od klase App iz textual paketa, što znači da se koristi za izradu aplikacija s grafičkim korisničkim sučeljem.
 Ova klasa poziva funkcije iz token_fuction.py datoteke.
 Izgled korisničkog sučelja je definiran u style.css datoteci.
@@ -135,12 +135,15 @@ Izgled korisničkog sučelja je definiran u style.css datoteci.
 #### Testiranje na Ganache testnoj mreži
         
 ![image](https://user-images.githubusercontent.com/100025512/223092807-8af12e47-476d-470a-802e-ab7c91621ba6.png)
+
 Slika korisničkog sučelja za interakciju s ReaAndDanci tokenima na tesnim Walletima Ganache mreži.
 
 ![image](https://user-images.githubusercontent.com/100025512/223093430-c1535c71-8add-46c3-9f12-c7db128a6425.png)
+
 Tesni walleti i njihove privatne adrese.
 
 ![image](https://user-images.githubusercontent.com/100025512/223093581-b2d603ad-efc7-4bd2-9dae-a694c43983be.png)
+
 Novi blok koji predstavlja transakciju na Ganache testnoj mreži.
 
 
