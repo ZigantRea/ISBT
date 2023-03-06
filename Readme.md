@@ -147,6 +147,8 @@ Tesni walleti i njihove privatne adrese.
 Novi blok koji predstavlja transakciju na Ganache testnoj mreži.
 
 
-
+### Literatura:
+skripta s vježbi
+ChatGPT
             
    
